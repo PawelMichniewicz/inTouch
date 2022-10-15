@@ -1,4 +1,4 @@
-﻿using InTouchConsoleClient;
+﻿using ConsoleClient;
 using System;
 
 // See https://aka.ms/new-console-template for more information

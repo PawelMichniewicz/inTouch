@@ -1,4 +1,4 @@
-﻿namespace InTouchConsoleClient
+﻿namespace ConsoleClient
 {
     internal class User
     {
