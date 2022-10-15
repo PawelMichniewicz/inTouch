@@ -3,7 +3,7 @@ using System;
 
 // See https://aka.ms/new-console-template for more information
 
-Console.WriteLine("Welcome to inTouch communicator");
+Console.WriteLine("Hi There! Let's stay inTouch!");
 Console.WriteLine("Provide your LOGIN:");
 
 User u = new();
