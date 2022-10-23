@@ -1,17 +1,61 @@
-﻿using ConsoleClient;
+﻿using CommunicationWebApi;
+using ConsoleClient;
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
 
-// See https://aka.ms/new-console-template for more information
+internal class Program
+{
+    static HttpClient Client = new HttpClient();
 
-Console.WriteLine("Hi There! Let's stay inTouch!");
-Console.WriteLine("Provide your LOGIN:");
+    private static void Main(string[] args)
+    {
+        // See https://aka.ms/new-console-template for more information
+        RunAsync().GetAwaiter().GetResult();
+    }
 
-User u = new();
+    static async Task RunAsync()
+    {
+        Console.WriteLine("Hi There! Let's stay inTouch!");
+        Console.WriteLine("Provide your LOGIN:");
 
-u.Login = Console.ReadLine()?.ToLower();
+        //User u = new();
+        //u.Login = Console.ReadLine()?.ToLower();
+        //Console.WriteLine("Provide your Password:");
+        //u.Password = Console.ReadLine()?.ToLower();
+        //Console.WriteLine($"You are now logged in as {u.Login} with password {u.Password}");
 
-Console.WriteLine("Provide your Password:");
+        
+        Console.WriteLine("Give me PORT:");
+        string? port = Console.ReadLine()?.ToLower();
 
-u.Password = Console.ReadLine()?.ToLower();
+        Client.BaseAddress = new Uri($"https://localhost:{port}");
+        Client.DefaultRequestHeaders.Accept.Clear();
+        Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        
+        WeatherForecast forecast = await GetForecastAsync();
+        Console.WriteLine($"your forecast for {forecast.Date}:");
+        Console.WriteLine($"Temperature C: {forecast.TemperatureC}");
+        Console.WriteLine($"Temperature F: {forecast.TemperatureF}");
+        Console.WriteLine($"Summary: {forecast.Summary}");
+    }
 
-Console.WriteLine($"You are now logged in as {u.Login} with password {u.Password}");
+    static async Task<WeatherForecast> GetForecastAsync()
+    {
+        WeatherForecast result = null;
+        HttpResponseMessage response = await Client.GetAsync("/WeatherForecast");
+        if (response.IsSuccessStatusCode)
+        {
+            var temp = await response.Content.ReadFromJsonAsync<IEnumerable<WeatherForecast>>();
+            result = temp.First();
+        }
+        return result;
+    }
+
+}
