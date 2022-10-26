@@ -1,5 +1,4 @@
 ﻿using CommunicationWebApi;
-using ConsoleClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,16 +21,7 @@ internal class Program
 
     static async Task RunAsync()
     {
-        Console.WriteLine("Hi There! Let's stay inTouch!");
-
-        //Console.WriteLine("Provide your LOGIN:");
-        //User u = new();
-        //u.Login = Console.ReadLine()?.ToLower();
-        //Console.WriteLine("Provide your Password:");
-        //u.Password = Console.ReadLine()?.ToLower();
-        //Console.WriteLine($"You are now logged in as {u.Login} with password {u.Password}");
-
-        
+        Console.WriteLine("Hi There! Let's stay inTouch!");       
         Console.WriteLine("Give me PORT:");
         string? port = Console.ReadLine()?.ToLower();
 

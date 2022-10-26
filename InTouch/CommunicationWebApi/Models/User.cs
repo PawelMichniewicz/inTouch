@@ -1,6 +1,6 @@
-﻿namespace ConsoleClient
+﻿namespace CommunicationWebApi.Models
 {
-    internal class User
+    public class User
     {
         public string? Login { get; set; }
 
