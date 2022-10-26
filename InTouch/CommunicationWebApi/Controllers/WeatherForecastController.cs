@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CommunicationWebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -18,8 +18,8 @@ namespace CommunicationWebApi.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public WeatherForecast Get()
+        [HttpGet(Name = "GetWeatherForecast")] // no idea what "name" param does, yet...
+        public WeatherForecast GetSingleForecast()
         {
             _logger.LogDebug("{class}: get", nameof(WeatherForecastController));
             return new WeatherForecast
