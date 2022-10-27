@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using CommunicationWebApi.Data;
 namespace CommunicationWebApi
 {
     public class Program
@@ -5,6 +8,8 @@ namespace CommunicationWebApi
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<CommunicationDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("CommunicationWebApiContext") ?? throw new InvalidOperationException("Connection string 'CommunicationWebApiContext' not found.")));
 
             // Add services to the container.
 
