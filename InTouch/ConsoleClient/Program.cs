@@ -1,4 +1,5 @@
 ﻿using CommunicationWebApi;
+using ConsoleClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,7 +17,13 @@ internal class Program
     private static void Main(string[] args)
     {
         // See https://aka.ms/new-console-template for more information
-        RunAsync().GetAwaiter().GetResult();
+
+
+        TestClass temp = new TestClass();
+
+        temp.go().GetAwaiter().GetResult();
+
+        //RunAsync().GetAwaiter().GetResult();
     }
 
     static async Task RunAsync()
