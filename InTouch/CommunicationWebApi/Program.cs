@@ -26,6 +26,9 @@ namespace CommunicationWebApi
 
             var app = builder.Build();
 
+            // custom seeding
+            app.CreateDB();
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

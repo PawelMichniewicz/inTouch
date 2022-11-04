@@ -9,10 +9,9 @@ namespace CommunicationWebApi.Data
 {
     public class CommunicationDbContext : DbContext
     {
-        public CommunicationDbContext (DbContextOptions<CommunicationDbContext> options)
+        public CommunicationDbContext(DbContextOptions<CommunicationDbContext> options)
             : base(options)
-        {
-        }
+        { }
 
         //public DbSet<Message> Message { get; set; } = default!;
         public DbSet<Message> Messages => Set<Message>();
