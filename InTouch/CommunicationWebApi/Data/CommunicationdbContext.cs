@@ -14,6 +14,11 @@ namespace CommunicationWebApi.Data
         { }
 
         //public DbSet<Message> Message { get; set; } = default!;
+        public DbSet<User> Users => Set<User>();
+        
         public DbSet<Message> Messages => Set<Message>();
+        
+        public DbSet<ChatRoom> ChatRooms => Set<ChatRoom>();
+
     }
 }

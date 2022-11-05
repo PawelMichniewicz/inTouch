@@ -7,14 +7,22 @@ namespace CommunicationWebApi.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public int Id { get; set; }
 
+        [Required]
         public string? Content { get; set; }
+        
+        public bool Edited { get; set; } = false;
 
+        public bool Deleted { get; set; } = false;
+
+        [Required]
         public DateTime Timestamp { get; set; } = DateTime.Now;
 
-        //public User? Sender { get; set; }
-        
-        //public User? Receiver { get; set; }
+        [Required]
+        public User? Sender { get; set; }
+
+        [Required]
+        public ChatRoom? ChatRoom { get; set; }
     }
 }

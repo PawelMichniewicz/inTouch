@@ -15,7 +15,7 @@ namespace CommunicationWebApi.Services
 
         public async Task<Message?> GetMessageAsync(int id)
         {
-            return await dbContext.Messages.FirstOrDefaultAsync(msg => msg.ID == id);
+            return await dbContext.Messages.FirstOrDefaultAsync(msg => msg.Id == id);
         }
     }
 }
