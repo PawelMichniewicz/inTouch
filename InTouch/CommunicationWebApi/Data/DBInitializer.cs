@@ -17,7 +17,7 @@ namespace CommunicationWebApi.Data
             var rachel = new User { Name = "Rachel Green ", Login = "RG", Password = "passwd" };
             var chandler = new User { Name = "Chandler Bing", Login = "CB", Password = "passwd" };
             var ross = new User { Name = "Ross Geller", Login = "RG", Password = "passwd" };
-            var monica = new User { Name = "Monica  Geller", Login = "MG", Password = "passwd" };
+            var monica = new User { Name = "Monica Geller", Login = "MG", Password = "passwd" };
             var phoebe = new User { Name = "Phoebe Buffay", Login = "PB", Password = "passwd" };
             context.Users.AddRange(joey, rachel, chandler, ross, monica, phoebe);
 

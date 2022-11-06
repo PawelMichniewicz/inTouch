@@ -10,17 +10,17 @@ namespace CommunicationWebApi.Controllers
     [ApiController]
     public class EmptyController : ControllerBase
     {
-        private readonly MessageService service;
+        private readonly MessageService queryService;
 
         public EmptyController(MessageService service)
         {
-            this.service = service;
+            queryService = service;
         }
 
         [HttpGet]
         public async Task<ActionResult<Message>> GetMessageAsync(int id)
         {
-            Message? message = await service.GetMessageAsync(id);
+            Message? message = await queryService.GetMessageAsync(id);
 
             if (message == null)
             {

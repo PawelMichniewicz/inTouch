@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace CommunicationWebApi.Models
 {
@@ -18,8 +19,10 @@ namespace CommunicationWebApi.Models
         [Required]
         public string? Password { get; set; }
 
+        [JsonIgnore]    // required to stop cyclic dependancy when sending back with REST api as JSON
         public ICollection<Message>? Messages { get; set; }
 
+        [JsonIgnore]    // same as above
         public ICollection<ChatRoom>? ChatRooms { get; set; }
     }
 }
