@@ -13,12 +13,12 @@ namespace CommunicationWebApi.Data
             }
 
             // seed Users
-            var joey = new User { Name = "Joey Tribbiani", Login = "JT", Password = "passwd" };
-            var rachel = new User { Name = "Rachel Green ", Login = "RG", Password = "passwd" };
-            var chandler = new User { Name = "Chandler Bing", Login = "CB", Password = "passwd" };
-            var ross = new User { Name = "Ross Geller", Login = "RG", Password = "passwd" };
-            var monica = new User { Name = "Monica Geller", Login = "MG", Password = "passwd" };
-            var phoebe = new User { Name = "Phoebe Buffay", Login = "PB", Password = "passwd" };
+            var joey = new User { Name = "Joey Tribbiani", Login = "JT" };
+            var rachel = new User { Name = "Rachel Green ", Login = "RG" };
+            var chandler = new User { Name = "Chandler Bing", Login = "CB" };
+            var ross = new User { Name = "Ross Geller", Login = "RG" };
+            var monica = new User { Name = "Monica Geller", Login = "MG" };
+            var phoebe = new User { Name = "Phoebe Buffay", Login = "PB" };
             context.Users.AddRange(joey, rachel, chandler, ross, monica, phoebe);
 
             // seed ChatRooms

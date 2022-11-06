@@ -16,10 +16,7 @@ namespace CommunicationWebApi.Models
         [Required]
         public string? Login { get; set; }
 
-        [Required]
-        public string? Password { get; set; }
-
-        [JsonIgnore]    // required to stop cyclic dependancy when sending back with REST api as JSON
+        [JsonIgnore]    // required to stop cyclic dependancy when sending JSON back over REST api
         public ICollection<Message>? Messages { get; set; }
 
         [JsonIgnore]    // same as above
