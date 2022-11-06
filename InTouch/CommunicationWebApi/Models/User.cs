@@ -14,7 +14,7 @@ namespace CommunicationWebApi.Models
         public string? Name { get; set; }
 
         [Required]
-        public string? Login { get; set; }
+        public string? Nickname { get; set; }
 
         [JsonIgnore]    // required to stop cyclic dependancy when sending JSON back over REST api
         public ICollection<Message>? Messages { get; set; }
