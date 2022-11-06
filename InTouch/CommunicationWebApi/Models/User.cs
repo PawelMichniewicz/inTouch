@@ -1,9 +1,25 @@
-﻿namespace CommunicationWebApi.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+
+namespace CommunicationWebApi.Models
 {
     public class User
     {
-        public string? Login { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
-        public string? Password { get; set; }
+        [Required]
+        public string? Name { get; set; }
+
+        [Required]
+        public string? Nickname { get; set; }
+
+        [JsonIgnore]    // required to stop cyclic dependancy when sending JSON back over REST api
+        public ICollection<Message>? Messages { get; set; }
+
+        [JsonIgnore]    // same as above
+        public ICollection<ChatRoom>? ChatRooms { get; set; }
     }
 }

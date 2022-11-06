@@ -13,7 +13,22 @@ namespace CommunicationWebApi.Data
             : base(options)
         { }
 
-        //public DbSet<Message> Message { get; set; } = default!;
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Message>()
+                .Navigation(m => m.Sender)
+                .AutoInclude();
+
+            modelBuilder.Entity<Message>()
+                .Navigation(m => m.ChatRoom)
+                .AutoInclude();
+        }
+
+        public DbSet<User> Users => Set<User>();
+        
         public DbSet<Message> Messages => Set<Message>();
+        
+        public DbSet<ChatRoom> ChatRooms => Set<ChatRoom>();
+
     }
 }

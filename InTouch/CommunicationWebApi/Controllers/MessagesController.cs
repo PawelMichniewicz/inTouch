@@ -42,7 +42,7 @@ namespace CommunicationWebApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMessage(int id, Message message)
         {
-            if (id != message.ID)
+            if (id != message.Id)
             {
                 return BadRequest();
             }
@@ -76,7 +76,7 @@ namespace CommunicationWebApi.Controllers
             _context.Messages.Add(message);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMessage", new { id = message.ID }, message);
+            return CreatedAtAction("GetMessage", new { id = message.Id }, message);
         }
 
         // DELETE: api/Messages/5
@@ -97,7 +97,7 @@ namespace CommunicationWebApi.Controllers
 
         private bool MessageExists(int id)
         {
-            return _context.Messages.Any(e => e.ID == id);
+            return _context.Messages.Any(e => e.Id == id);
         }
     }
 }
