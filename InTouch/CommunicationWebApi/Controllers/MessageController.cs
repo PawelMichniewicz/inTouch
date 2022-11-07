@@ -6,11 +6,11 @@ namespace CommunicationWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmptyController : ControllerBase
+    public class MessageController : ControllerBase
     {
         private readonly MessageService queryService;
 
-        public EmptyController(MessageService service)
+        public MessageController(MessageService service)
         {
             queryService = service;
         }

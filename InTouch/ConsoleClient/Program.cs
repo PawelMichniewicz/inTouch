@@ -49,7 +49,7 @@ internal class Program
     static async Task<Message?> GetChatRoomAsync(int msgId)
     {
         Message? result = null;
-        HttpResponseMessage response = await Client.GetAsync($"/api/Empty/{msgId}");
+        HttpResponseMessage response = await Client.GetAsync($"/api/Message/{msgId}");
         if (response.IsSuccessStatusCode)
         {
             result = await response.Content.ReadFromJsonAsync<Message>();
