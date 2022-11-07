@@ -1,10 +1,5 @@
-﻿using CommunicationWebApi;
-using ConsoleClient;
+﻿using CommunicationWebApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.IO;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -18,38 +13,46 @@ internal class Program
     {
         // See https://aka.ms/new-console-template for more information
 
-
-        TestClass temp = new TestClass();
-
-        temp.go().GetAwaiter().GetResult();
-
-        //RunAsync().GetAwaiter().GetResult();
+        RunAsync().GetAwaiter().GetResult();
     }
 
     static async Task RunAsync()
     {
-        Console.WriteLine("Hi There! Let's stay inTouch!");       
-        Console.WriteLine("Give me PORT:");
-        string? port = Console.ReadLine()?.ToLower();
+        Console.WriteLine("Hi There! Let's stay inTouch!");
+        Console.WriteLine();
 
-        Client.BaseAddress = new Uri($"https://localhost:{port}");
+        Client.BaseAddress = new Uri("https://localhost:7269");
         Client.DefaultRequestHeaders.Accept.Clear();
         Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        
-        WeatherForecast? forecast = await GetForecastAsync();
-        Console.WriteLine($"your forecast for {forecast?.Date}:");
-        Console.WriteLine($"Temperature C: {forecast?.TemperatureC}");
-        Console.WriteLine($"Temperature F: {forecast?.TemperatureF}");
-        Console.WriteLine($"Summary: {forecast?.Summary}");
+
+        Message? message = await GetChatRoomAsync(1);
+        PrintMessage(message);
+
+        message = await GetChatRoomAsync(2);
+        PrintMessage(message);
+
+        message = await GetChatRoomAsync(3);
+        PrintMessage(message);
+
+        message = await GetChatRoomAsync(4);
+        PrintMessage(message);
     }
 
-    static async Task<WeatherForecast?> GetForecastAsync()
+    private static void PrintMessage(Message? message)
     {
-        WeatherForecast? result = null;
-        HttpResponseMessage response = await Client.GetAsync("/WeatherForecast");
+        Console.WriteLine($"{message?.Sender?.Name} writes in \"{message?.ChatRoom?.Name}\":");
+        Console.WriteLine($"{message?.Timestamp.ToShortDateString()} {message?.Timestamp.ToShortTimeString()}");
+        Console.WriteLine($"{message?.Sender?.Nickname}: {message?.Content}");
+        Console.WriteLine();
+    }
+
+    static async Task<Message?> GetChatRoomAsync(int msgId)
+    {
+        Message? result = null;
+        HttpResponseMessage response = await Client.GetAsync($"/api/Empty/{msgId}");
         if (response.IsSuccessStatusCode)
         {
-            result = await response.Content.ReadFromJsonAsync<WeatherForecast>();
+            result = await response.Content.ReadFromJsonAsync<Message>();
         }
         return result;
     }

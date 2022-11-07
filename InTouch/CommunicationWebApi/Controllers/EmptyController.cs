@@ -1,8 +1,6 @@
 ﻿using CommunicationWebApi.Models;
 using CommunicationWebApi.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CommunicationWebApi.Controllers
 {
@@ -28,6 +26,12 @@ namespace CommunicationWebApi.Controllers
             }
 
             return message;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Message>> GetMessage2Async(int id)
+        {
+            return await GetMessageAsync(id);
         }
     }
 }
