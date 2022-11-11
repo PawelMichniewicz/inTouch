@@ -18,12 +18,12 @@ internal class Program
 
     static async Task RunAsync()
     {
-        Console.WriteLine("Hi There! Let's stay inTouch!");
+        var user = "Joey Tribbiani";
+        Console.WriteLine($"Hi There {user}!");
+        Console.WriteLine("Let's stay inTouch!");
         Console.WriteLine();
-
-        Client.BaseAddress = new Uri("https://localhost:7269");
-        Client.DefaultRequestHeaders.Accept.Clear();
-        Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        
+        InitHttpClient();
 
         Message? message = await GetChatRoomAsync(1);
         PrintMessage(message);
@@ -36,6 +36,13 @@ internal class Program
 
         message = await GetChatRoomAsync(4);
         PrintMessage(message);
+    }
+
+    private static void InitHttpClient()
+    {
+        Client.BaseAddress = new Uri("https://localhost:7269");
+        Client.DefaultRequestHeaders.Accept.Clear();
+        Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 
     private static void PrintMessage(Message? message)
