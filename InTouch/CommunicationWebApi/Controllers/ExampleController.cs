@@ -7,23 +7,23 @@ namespace CommunicationWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MessagesController : ControllerBase
+    public class ExampleController : ControllerBase
     {
         private readonly CommunicationDbContext _context;
 
-        public MessagesController(CommunicationDbContext context)
+        public ExampleController(CommunicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Messages
+        // GET: api/Example
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Message>>> GetMessage()
         {
             return await _context.Messages.ToListAsync();
         }
 
-        // GET: api/Messages/5
+        // GET: api/Example/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Message>> GetMessage(int id)
         {
@@ -37,7 +37,7 @@ namespace CommunicationWebApi.Controllers
             return message;
         }
 
-        // PUT: api/Messages/5
+        // PUT: api/Example/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMessage(int id, Message message)
@@ -68,7 +68,7 @@ namespace CommunicationWebApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Messages
+        // POST: api/Example
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Message>> PostMessage(Message message)
@@ -79,7 +79,7 @@ namespace CommunicationWebApi.Controllers
             return CreatedAtAction("GetMessage", new { id = message.Id }, message);
         }
 
-        // DELETE: api/Messages/5
+        // DELETE: api/Example/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMessage(int id)
         {

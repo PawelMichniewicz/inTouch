@@ -1,6 +1,7 @@
 using CommunicationWebApi.Data;
 using CommunicationWebApi.Services;
 using Microsoft.EntityFrameworkCore;
+
 namespace CommunicationWebApi
 {
     public class Program
@@ -15,8 +16,8 @@ namespace CommunicationWebApi
             //    options.UseSqlServer(builder.Configuration.GetConnectionString("CommunicationWebApiContext")
             //    ?? throw new InvalidOperationException("Connection string 'CommunicationWebApiContext' not found.")));
 
-            builder.Services.AddSqlite<CommunicationDbContext>("Data Source = Communication.db");
-
+            builder.Services.AddSqlite<CommunicationDbContext>(builder.Configuration.GetConnectionString("CommunicationDbContext"));
+            
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
