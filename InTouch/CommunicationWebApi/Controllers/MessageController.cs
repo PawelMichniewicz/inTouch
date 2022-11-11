@@ -8,8 +8,8 @@ namespace CommunicationWebApi.Controllers
     [ApiController]
     public class MessageController : ControllerBase
     {
-        private readonly MessageService queryService;
         private readonly ILogger<MessageController> logger;
+        private readonly MessageService queryService;
 
         public MessageController(ILogger<MessageController> logger, MessageService service)
         {

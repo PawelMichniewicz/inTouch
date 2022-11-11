@@ -22,6 +22,10 @@ namespace CommunicationWebApi.Data
             modelBuilder.Entity<Message>()
                 .Navigation(m => m.ChatRoom)
                 .AutoInclude();
+
+            modelBuilder.Entity<User>()
+                .Navigation(m => m.ChatRooms)
+                .AutoInclude();
         }
 
         public DbSet<User> Users => Set<User>();

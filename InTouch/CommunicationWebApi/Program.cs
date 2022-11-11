@@ -24,6 +24,7 @@ namespace CommunicationWebApi
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<MessageService>();
+            builder.Services.AddScoped<ChatRoomService>();
 
             var app = builder.Build();
 

@@ -1,5 +1,6 @@
 ﻿using CommunicationWebApi.Models;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -25,17 +26,24 @@ internal class Program
         
         InitHttpClient();
 
-        Message? message = await GetChatRoomAsync(1);
-        PrintMessage(message);
+        var temp = await GetChatRoomsAsync(user);
 
-        message = await GetChatRoomAsync(2);
-        PrintMessage(message);
+        foreach (var chat in temp)
+        {
+            Console.WriteLine(chat);
+        }
 
-        message = await GetChatRoomAsync(3);
-        PrintMessage(message);
+        //Message? message = await GetChatRoomAsync(1);
+        //PrintMessage(message);
 
-        message = await GetChatRoomAsync(4);
-        PrintMessage(message);
+        //message = await GetChatRoomAsync(2);
+        //PrintMessage(message);
+
+        //message = await GetChatRoomAsync(3);
+        //PrintMessage(message);
+
+        //message = await GetChatRoomAsync(4);
+        //PrintMessage(message);
     }
 
     private static void InitHttpClient()
@@ -60,6 +68,17 @@ internal class Program
         if (response.IsSuccessStatusCode)
         {
             result = await response.Content.ReadFromJsonAsync<Message>();
+        }
+        return result;
+    }
+
+    static async Task<ICollection<string>> GetChatRoomsAsync(string name)
+    {
+        ICollection<string>? result = null;
+        HttpResponseMessage response = await Client.GetAsync($"/api/ChatRoom/{name}");
+        if (response.IsSuccessStatusCode)
+        {
+            result = await response.Content.ReadFromJsonAsync<ICollection<string>>();
         }
         return result;
     }
