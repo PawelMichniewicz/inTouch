@@ -6,16 +6,10 @@ namespace CommunicationWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MessageController : ControllerBase
+    public class MessageController : CommonControllerBase<MessageService>
     {
-        private readonly ILogger<MessageController> logger;
-        private readonly MessageService queryService;
-
-        public MessageController(ILogger<MessageController> logger, MessageService service)
-        {
-            this.logger = logger;
-            queryService = service;
-        }
+        public MessageController(ILogger<MessageController> logger, MessageService service) : base (logger, service)
+        { }
 
         // api/Message?id=3
         [HttpGet]

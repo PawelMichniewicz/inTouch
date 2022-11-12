@@ -4,14 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CommunicationWebApi.Services
 {
-    public class MessageService
+    public class MessageService : ServiceBase
     {
-        private readonly CommunicationDbContext dbContext;
-
-        public MessageService(CommunicationDbContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
+        public MessageService(CommunicationDbContext dbContext) : base(dbContext)
+        { }
 
         public async Task<Message?> GetMessageAsync(int id)
         {

@@ -7,17 +7,10 @@ namespace CommunicationWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ChatRoomController : ControllerBase
+    public class ChatRoomController : CommonControllerBase<ChatRoomService>
     {
-        private readonly ILogger<ChatRoomController> logger;
-        private readonly ChatRoomService queryService;
-
-        public ChatRoomController(ILogger<ChatRoomController> logger, ChatRoomService service)
-        {
-            this.logger = logger;
-            queryService = service;
-        }
-
+        public ChatRoomController(ILogger<ChatRoomController> logger, ChatRoomService service) : base (logger, service)
+        { }
         
     }
 }

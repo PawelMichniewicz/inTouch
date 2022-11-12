@@ -4,15 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CommunicationWebApi.Services
 {
-    public class ChatRoomService
+    public class ChatRoomService : ServiceBase
     {
-        private readonly CommunicationDbContext dbContext;
-
-        public ChatRoomService(CommunicationDbContext dbContext)
-        {
-            this.dbContext = dbContext;
-        }
-
+        public ChatRoomService(CommunicationDbContext dbContext) : base(dbContext) 
+        { }
         
     }
 }

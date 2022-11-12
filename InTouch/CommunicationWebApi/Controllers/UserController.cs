@@ -6,7 +6,7 @@ namespace CommunicationWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : CommonControllerBase
+    public class UserController : CommonControllerBase<UserService>
     {
 
         public UserController(ILogger<UserController> logger, UserService service) : base(logger, service)
@@ -15,7 +15,7 @@ namespace CommunicationWebApi.Controllers
         [HttpGet("{name}")]
         public async Task<ActionResult<ICollection<string?>>> GetUsersChatRoomsAsync(string name)
         {
-            var chatRooms = await (queryService as UserService).QueryChatRoomsByUserAsync(name);
+            var chatRooms = await queryService.QueryChatRoomsByUserAsync(name);
             if (chatRooms == null)
             {
                 return NotFound();
