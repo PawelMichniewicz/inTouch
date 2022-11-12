@@ -75,7 +75,7 @@ internal class Program
     static async Task<ICollection<string>> GetChatRoomsAsync(string name)
     {
         ICollection<string>? result = null;
-        HttpResponseMessage response = await Client.GetAsync($"/api/ChatRoom/{name}");
+        HttpResponseMessage response = await Client.GetAsync($"/api/User/{name}");
         if (response.IsSuccessStatusCode)
         {
             result = await response.Content.ReadFromJsonAsync<ICollection<string>>();

@@ -18,15 +18,6 @@ namespace CommunicationWebApi.Controllers
             queryService = service;
         }
 
-        [HttpGet("{name}")]
-        public async Task<ActionResult<ICollection<string?>>> GetChatRoomsAsync(string name)
-        {
-            var chatRooms = await queryService.QueryChatRoomsByUserAsync(name);
-            if (chatRooms == null)
-            {
-                return NotFound();
-            } 
-            return Ok(chatRooms);
-        }
+        
     }
 }

@@ -13,11 +13,6 @@ namespace CommunicationWebApi.Services
             this.dbContext = dbContext;
         }
 
-        public async Task<ICollection<string?>> QueryChatRoomsByUserAsync(string name)
-        {
-            User temp = await dbContext.Users.FirstAsync(u => u.Name == name);
-            var result = temp.ChatRooms.Select(c => c.Name).ToArray();
-            return result;
-        }
+        
     }
 }
