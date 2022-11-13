@@ -23,4 +23,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CommunicationWebApi\CommunicationWebApi.csproj" />
+  </ItemGroup>
+
 </Project>

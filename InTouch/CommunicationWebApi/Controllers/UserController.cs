@@ -13,8 +13,9 @@ namespace CommunicationWebApi.Controllers
         { }
 
         [HttpGet("{name}")]
-        public async Task<ActionResult<ICollection<string?>>> GetUsersChatRoomsAsync(string name)
+        public async Task<ActionResult<ICollection<string>?>> GetUsersChatRoomsAsync(string name)
         {
+            logger.LogTrace($"{nameof(UserController.GetUsersChatRoomsAsync)} : {nameof(name)} = {name}");
             var chatRooms = await queryService.QueryChatRoomsByUserAsync(name);
             if (chatRooms == null)
             {
