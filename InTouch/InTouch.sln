@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{C6403918-061F-4034-8CC1-5181DD758838}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunicationWebApi", "CommunicationWebApi\CommunicationWebApi.csproj", "{C13F5B40-C98F-4F67-ACBD-DFBC6519255F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommunicationWebApi", "CommunicationWebApi\CommunicationWebApi.csproj", "{C13F5B40-C98F-4F67-ACBD-DFBC6519255F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunicationWebApi.Tests", "CommunicationWebApi.Tests\CommunicationWebApi.Tests.csproj", "{4C0AE35F-DFDB-450D-B3D1-923084794909}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C13F5B40-C98F-4F67-ACBD-DFBC6519255F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C13F5B40-C98F-4F67-ACBD-DFBC6519255F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C13F5B40-C98F-4F67-ACBD-DFBC6519255F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C0AE35F-DFDB-450D-B3D1-923084794909}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C0AE35F-DFDB-450D-B3D1-923084794909}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C0AE35F-DFDB-450D-B3D1-923084794909}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C0AE35F-DFDB-450D-B3D1-923084794909}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
