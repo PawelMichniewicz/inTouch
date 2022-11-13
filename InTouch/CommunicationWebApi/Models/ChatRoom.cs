@@ -10,7 +10,7 @@ namespace CommunicationWebApi.Models
         public int Id { get; set; }
 
         [Required]
-        public string? Name { get; set; } = "Chat room";
+        public string Name { get; set; } = "Chat room";
 
         public bool Archived { get; set; } = false;
 

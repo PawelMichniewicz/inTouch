@@ -16,7 +16,8 @@ namespace CommunicationWebApi
             //    options.UseSqlServer(builder.Configuration.GetConnectionString("CommunicationWebApiContext")
             //    ?? throw new InvalidOperationException("Connection string 'CommunicationWebApiContext' not found.")));
 
-            builder.Services.AddSqlite<CommunicationDbContext>(builder.Configuration.GetConnectionString("CommunicationDbContext"));
+            string? connectionString = builder.Configuration.GetConnectionString("CommunicationDbContext");
+            builder.Services.AddSqlite<CommunicationDbContext>(connectionString ?? throw new ArgumentNullException("Connection string not found"));
             
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

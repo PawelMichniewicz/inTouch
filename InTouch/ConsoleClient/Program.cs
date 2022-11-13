@@ -28,9 +28,12 @@ internal class Program
 
         var temp = await GetChatRoomsAsync(user);
 
-        foreach (var chat in temp)
+        if (temp is not null)
         {
-            Console.WriteLine(chat);
+            foreach (var chat in temp)
+            {
+                Console.WriteLine(chat);
+            } 
         }
 
         //Message? message = await GetChatRoomAsync(1);
@@ -72,7 +75,7 @@ internal class Program
         return result;
     }
 
-    static async Task<ICollection<string>> GetChatRoomsAsync(string name)
+    static async Task<ICollection<string>?> GetChatRoomsAsync(string name)
     {
         ICollection<string>? result = null;
         HttpResponseMessage response = await Client.GetAsync($"/api/User/{name}");

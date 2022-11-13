@@ -2,6 +2,6 @@
 {
     public interface IUserService
     {
-        public Task<ICollection<string?>> QueryChatRoomsByUserAsync(string name);
+        public Task<ICollection<string>?> QueryChatRoomsByUserAsync(string name);
     }
 }

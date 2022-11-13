@@ -9,10 +9,10 @@ namespace CommunicationWebApi.Services
         public UserService(CommunicationDbContext dbContext) : base(dbContext)
         { }
 
-        public async Task<ICollection<string?>> QueryChatRoomsByUserAsync(string name)
+        public async Task<ICollection<string>?> QueryChatRoomsByUserAsync(string name)
         {
             User temp = await dbContext.Users.FirstAsync(u => u.Name == name);
-            var result = temp.ChatRooms.Select(c => c.Name).ToArray();
+            ICollection<string>? result = temp.ChatRooms?.Select(c => c.Name).ToArray();
             return result;
         }
 
