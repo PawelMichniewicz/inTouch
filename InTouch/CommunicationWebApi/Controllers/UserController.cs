@@ -6,10 +6,10 @@ namespace CommunicationWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : CommonControllerBase<UserService>
+    public class UserController : CommonControllerBase<IUserService>
     {
 
-        public UserController(ILogger<UserController> logger, UserService service) : base(logger, service)
+        public UserController(ILogger<UserController> logger, IUserService service) : base(logger, service)
         { }
 
         [HttpGet("{name}")]

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CommunicationWebApi.Services
 {
-    public class UserService : ServiceBase
+    public class UserService : ServiceBase, IUserService
     {
         public UserService(CommunicationDbContext dbContext) : base(dbContext)
         { }
@@ -15,5 +15,6 @@ namespace CommunicationWebApi.Services
             var result = temp.ChatRooms.Select(c => c.Name).ToArray();
             return result;
         }
+
     }
 }

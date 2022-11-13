@@ -25,7 +25,7 @@ namespace CommunicationWebApi
 
             builder.Services.AddScoped<MessageService>();
             builder.Services.AddScoped<ChatRoomService>();
-            builder.Services.AddScoped<UserService>();
+            builder.Services.AddScoped<IUserService, UserService>();
 
             var app = builder.Build();
 
