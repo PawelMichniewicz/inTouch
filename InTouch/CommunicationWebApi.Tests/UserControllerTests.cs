@@ -4,6 +4,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
+using System.Xml.Linq;
 
 namespace CommunicationWebApi.Tests
 {
@@ -26,6 +27,22 @@ namespace CommunicationWebApi.Tests
 
             // Assert
             response.Result.As<OkObjectResult>().Value.Should().BeEquivalentTo(expectedChatRooms);
+        }
+
+        [Fact]
+        public async Task Get_NotFound_Async()
+        {
+            // Arrange
+            string name = "Ross Geller";
+            var serviceStub = new Mock<IUserService>();
+            serviceStub.Setup(m => m.QueryChatRoomsByUserAsync(It.IsAny<string>())).ReturnsAsync((ICollection<string>?)null);
+            UserController UUT = new(loggerStub.Object, serviceStub.Object);
+
+            // Act
+            var response = await UUT.GetUsersChatRoomsAsync(name);
+            
+            // Assert
+            response.Result.Should().BeOfType<NotFoundResult>();
         }
     }
 }
