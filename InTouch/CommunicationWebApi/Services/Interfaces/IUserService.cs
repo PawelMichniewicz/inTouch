@@ -1,4 +1,4 @@
-﻿namespace CommunicationWebApi.Services
+﻿namespace CommunicationWebApi.Services.Interfaces
 {
     public interface IUserService
     {

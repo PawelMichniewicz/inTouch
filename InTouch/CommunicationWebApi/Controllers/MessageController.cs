@@ -1,14 +1,14 @@
 ﻿using CommunicationWebApi.Models;
-using CommunicationWebApi.Services;
+using CommunicationWebApi.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommunicationWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MessageController : CommonControllerBase<MessageService>
+    public class MessageController : CommonControllerBase<IMessageService>
     {
-        public MessageController(ILogger<MessageController> logger, MessageService service) : base (logger, service)
+        public MessageController(ILogger<MessageController> logger, IMessageService service) : base(logger, service)
         { }
 
         // api/Message?id=3
@@ -16,7 +16,7 @@ namespace CommunicationWebApi.Controllers
         public async Task<ActionResult<Message>> GetMessageAsync(int id)
         {
             logger.LogTrace($"{nameof(this.GetMessageAsync)}: {nameof(id)} = {id}");
-            Message? message = await queryService.GetMessageAsync(id);
+            Message? message = await service.GetMessageAsync(id);
 
             if (message == null)
             {

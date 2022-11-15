@@ -1,5 +1,5 @@
 using CommunicationWebApi.Controllers;
-using CommunicationWebApi.Services;
+using CommunicationWebApi.Services.Interfaces;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

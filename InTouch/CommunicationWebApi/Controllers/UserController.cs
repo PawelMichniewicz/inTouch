@@ -1,5 +1,4 @@
-﻿using CommunicationWebApi.Services;
-using Microsoft.AspNetCore.Http;
+﻿using CommunicationWebApi.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommunicationWebApi.Controllers
@@ -16,12 +15,14 @@ namespace CommunicationWebApi.Controllers
         public async Task<ActionResult<ICollection<string>?>> GetUsersChatRoomsAsync(string name)
         {
             logger.LogTrace($"{nameof(UserController.GetUsersChatRoomsAsync)} : {nameof(name)} = {name}");
-            var chatRooms = await queryService.QueryChatRoomsByUserAsync(name);
+            var chatRooms = await service.QueryChatRoomsByUserAsync(name);
             if (chatRooms == null)
             {
                 return NotFound();
             }
             return Ok(chatRooms);
         }
+
+        //[HttpPost]
     }
 }

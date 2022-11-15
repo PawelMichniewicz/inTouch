@@ -1,5 +1,6 @@
 using CommunicationWebApi.Data;
 using CommunicationWebApi.Services;
+using CommunicationWebApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CommunicationWebApi
@@ -24,8 +25,8 @@ namespace CommunicationWebApi
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddScoped<MessageService>();
-            builder.Services.AddScoped<ChatRoomService>();
+            builder.Services.AddScoped<IMessageService, MessageService>();
+            builder.Services.AddScoped<IChatRoomService, ChatRoomService>();
             builder.Services.AddScoped<IUserService, UserService>();
 
             var app = builder.Build();

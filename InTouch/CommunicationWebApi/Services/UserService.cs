@@ -1,5 +1,6 @@
 ﻿using CommunicationWebApi.Data;
 using CommunicationWebApi.Models;
+using CommunicationWebApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CommunicationWebApi.Services
@@ -11,8 +12,8 @@ namespace CommunicationWebApi.Services
 
         public async Task<ICollection<string>?> QueryChatRoomsByUserAsync(string name)
         {
-            User temp = await dbContext.Users.FirstAsync(u => u.Name == name);
-            ICollection<string>? result = temp.ChatRooms?.Select(c => c.Name).ToArray();
+            User user = await dbContext.Users.FirstAsync(u => u.Name == name);
+            ICollection<string>? result = user.ChatRooms?.Select(c => c.Name).ToArray();
             return result;
         }
 
