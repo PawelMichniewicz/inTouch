@@ -4,7 +4,6 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System.Xml.Linq;
 
 namespace CommunicationWebApi.Tests
 {

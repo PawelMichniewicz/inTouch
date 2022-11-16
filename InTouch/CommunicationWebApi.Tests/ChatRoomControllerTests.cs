@@ -5,11 +5,6 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CommunicationWebApi.Tests
 {
@@ -35,7 +30,23 @@ namespace CommunicationWebApi.Tests
             var response = await UUT.GetChatRoomAsync(chatRoomId);
 
             // Assert
-            response.Result.As<OkObjectResult>().Value.Should().BeEquivalentTo(expectedChatRoom);
+            response?.Result.As<OkObjectResult>().Value.Should().BeEquivalentTo(expectedChatRoom);
+        }
+
+        [Fact]
+        public async Task Get_NotFound_Async()
+        {
+            // Arrange
+            int chatRoomId = 1;
+            var serviceStub = new Mock<IChatRoomService>();
+            serviceStub.Setup(m => m.QueryChatRoomAsync(It.IsAny<int>())).ReturnsAsync((ChatRoom?)null);
+            var UUT = new ChatRoomController(loggerStub.Object, serviceStub.Object);
+
+            // Act
+            var response = await UUT.GetChatRoomAsync(chatRoomId);
+
+            // Assert
+            response?.Result.Should().BeOfType<NotFoundResult>();
         }
     }
 }
