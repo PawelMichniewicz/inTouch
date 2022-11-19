@@ -11,17 +11,17 @@ namespace CommunicationWebApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Message>()
-                .Navigation(m => m.Sender)
-                .AutoInclude();
+            //modelBuilder.Entity<Message>()
+            //    .Navigation(m => m.Sender)
+            //    .AutoInclude();
 
-            modelBuilder.Entity<Message>()
-                .Navigation(m => m.ChatRoom)
-                .AutoInclude();
+            //modelBuilder.Entity<Message>()
+            //    .Navigation(m => m.ChatRoom)
+            //    .AutoInclude();
 
-            modelBuilder.Entity<User>()
-                .Navigation(m => m.ChatRooms)
-                .AutoInclude();
+            //modelBuilder.Entity<User>()
+            //    .Navigation(m => m.ChatRooms)
+            //    .AutoInclude();
         }
 
         public DbSet<User> Users => Set<User>();

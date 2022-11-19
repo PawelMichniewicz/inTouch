@@ -17,5 +17,10 @@ namespace CommunicationWebApi.Services
             return result;
         }
 
+        public async Task<User?> QueryUserProfileAsync(string name)
+        {
+            var profile = await dbContext.Users.FirstOrDefaultAsync(u => u.Name == name);
+            return profile;
+        }
     }
 }
