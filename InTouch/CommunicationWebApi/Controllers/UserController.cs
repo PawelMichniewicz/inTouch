@@ -12,6 +12,8 @@ namespace CommunicationWebApi.Controllers
         public UserController(ILogger<UserController> logger, IUserService service) : base(logger, service)
         { }
 
+        // TODO: this should rather be in ChatRoomController
+        // TODO: BUG should operate on ID rather than name
         [HttpGet("{name}")]
         public async Task<ActionResult<ICollection<string>?>> GetUserChatRoomsAsync(string name)
         {
@@ -24,6 +26,8 @@ namespace CommunicationWebApi.Controllers
             return Ok(chatRooms);
         }
 
+        // GET: api/User/userName?userName=Ross%20Geller
+        // TODO: BUG should operate on ID rather than name
         [HttpGet("userName")]
         public async Task<ActionResult<User?>> GetUserProfileAsync(string userName)
         {
@@ -36,6 +40,28 @@ namespace CommunicationWebApi.Controllers
             return Ok(profile);
         }
 
-        //[HttpPost]
+        
+        // TODO: add UT for this
+        // PUT: api/User/4
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUserAsync(int id, User profile)
+        {
+            if (id != profile.Id)
+            {
+                return BadRequest();
+            }
+
+            if (await service.UpdateProfileAsync(profile))
+            {
+                return NoContent();
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
     }
 }

@@ -6,5 +6,6 @@ namespace CommunicationWebApi.Services.Interfaces
     {
         public Task<ICollection<string>?> QueryChatRoomsByUserAsync(string name);
         public Task<User?> QueryUserProfileAsync(string name);
+        public Task<bool> UpdateProfileAsync(User profile);
     }
 }

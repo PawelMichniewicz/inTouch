@@ -12,8 +12,8 @@ namespace CommunicationWebApi.Services
 
         public async Task<ICollection<string>?> QueryChatRoomsByUserAsync(string name)
         {
-            User user = await dbContext.Users.FirstAsync(u => u.Name == name);
-            ICollection<string>? result = user.ChatRooms?.Select(c => c.Name).ToArray();
+            var user = await dbContext.Users.Include(u => u.ChatRooms).FirstOrDefaultAsync(u => u.Name == name);
+            ICollection<string>? result = user?.ChatRooms?.Select(c => c.Name).ToArray();
             return result;
         }
 
@@ -21,6 +21,18 @@ namespace CommunicationWebApi.Services
         {
             var profile = await dbContext.Users.FirstOrDefaultAsync(u => u.Name == name);
             return profile;
+        }
+
+        public async Task<bool> UpdateProfileAsync(User profile)
+        {
+            if (await dbContext.Users.AnyAsync(u => u.Id == profile.Id))
+            {
+                dbContext.Entry(profile).State = EntityState.Modified;
+            }
+
+            var count = await dbContext.SaveChangesAsync();
+
+            return count > 0;
         }
     }
 }
