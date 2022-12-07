@@ -23,7 +23,6 @@ namespace CommunicationWebApi.Models
         [Required]
         public User? Sender { get; set; }
 
-        [Required]
         [JsonIgnore]    // break cyclic dependancy 
         public ChatRoom? ChatRoom { get; set; }
     }

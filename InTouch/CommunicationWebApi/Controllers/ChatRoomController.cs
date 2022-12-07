@@ -21,5 +21,12 @@ namespace CommunicationWebApi.Controllers
             }
             return Ok(chatRoom);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ChatRoom>> CreateChatRoomAsync(ChatRoom chatRoom)
+        {
+            _ = await service.AddChatRoomAsync(chatRoom);
+            return CreatedAtAction(nameof(CreateChatRoomAsync), new { id = chatRoom.Id }, chatRoom);
+        }
     }
 }
