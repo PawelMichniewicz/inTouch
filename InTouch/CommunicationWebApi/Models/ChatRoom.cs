@@ -16,8 +16,8 @@ namespace CommunicationWebApi.Models
 
         public bool Deleted { get; set; } = false;
 
-        public ICollection<User>? Members { get; set; }
+        public ICollection<User> Members { get; set; } = new List<User>();
 
-        public ICollection<Message>? Messages { get; set; }
+        public ICollection<Message> Messages { get; set; } = new List<Message>();
     }
 }

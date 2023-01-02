@@ -11,6 +11,7 @@ namespace CommunicationWebApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             //modelBuilder.Entity<Message>()
             //    .Navigation(m => m.Sender)
             //    .AutoInclude();
