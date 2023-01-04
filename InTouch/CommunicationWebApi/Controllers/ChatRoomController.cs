@@ -22,6 +22,19 @@ namespace CommunicationWebApi.Controllers
             return Ok(chatRoom);
         }
 
+        // TODO: BUG should operate on ID rather than name
+        [HttpGet("{name}")]
+        public async Task<ActionResult<ICollection<string>?>> GetUserChatRoomsAsync(string name)
+        {
+            logger.LogTrace($"{nameof(this.GetUserChatRoomsAsync)} : {nameof(name)} = {name}");
+            var chatRooms = await service.QueryChatRoomsByUserAsync(name);
+            if (chatRooms == null)
+            {
+                return NotFound();
+            }
+            return Ok(chatRooms);
+        }
+
         [HttpPost]
         public async Task<ActionResult<ChatRoom>> CreateChatRoomAsync(ChatRoom chatRoom)
         {

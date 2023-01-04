@@ -14,37 +14,6 @@ namespace CommunicationWebApi.Tests
         private readonly Mock<ILogger<UserController>> loggerStub = new();
 
         [Fact]
-        public async Task Get_Chatrooms_GreenPath_Async()
-        {
-            // Arrange
-            ICollection<string> expectedChatRooms = new[] { "Frinds", "Chandler", "Monica" };
-            var serviceStub = new Mock<IUserService>();
-            serviceStub.Setup(m => m.QueryChatRoomsByUserAsync(It.IsAny<string>())).ReturnsAsync(expectedChatRooms);
-            UserController UUT = new(loggerStub.Object, serviceStub.Object);
-
-            // Act
-            var response = await UUT.GetUserChatRoomsAsync(userName);
-
-            // Assert
-            response.Result.As<OkObjectResult>().Value.Should().BeEquivalentTo(expectedChatRooms);
-        }
-
-        [Fact]
-        public async Task Get_Chatrooms_NotFound_Async()
-        {
-            // Arrange
-            var serviceStub = new Mock<IUserService>();
-            serviceStub.Setup(m => m.QueryChatRoomsByUserAsync(It.IsAny<string>())).ReturnsAsync((ICollection<string>?)null);
-            UserController UUT = new(loggerStub.Object, serviceStub.Object);
-
-            // Act
-            var response = await UUT.GetUserChatRoomsAsync(userName);
-            
-            // Assert
-            response.Result.Should().BeOfType<NotFoundResult>();
-        }
-
-        [Fact]
         public async Task Get_Profile_GreenPath_Async()
         {
             // Arrange
@@ -53,9 +22,7 @@ namespace CommunicationWebApi.Tests
             {
                 Id = 1,
                 Name = userName,
-                Nickname = "R.G.",
-                ChatRooms = null,
-                Messages = null
+                Nickname = "R.G."
             };
             serviceStub.Setup(m => m.QueryUserProfileAsync(It.IsAny<string>())).ReturnsAsync(expectedUser);
             UserController UUT = new(loggerStub.Object, serviceStub.Object);

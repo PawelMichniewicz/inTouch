@@ -11,6 +11,12 @@ namespace CommunicationWebApi.Services
         public ChatRoomService(CommunicationDbContext dbContext) : base(dbContext)
         { }
 
+        public async Task<ICollection<string>?> QueryChatRoomsByUserAsync(string name)
+        {
+            var user = await dbContext.Users.Include(u => u.ChatRooms).FirstOrDefaultAsync(u => u.Name == name);
+            ICollection<string>? result = user?.ChatRooms?.Select(c => c.Name).ToArray();
+            return result;
+        }
 
         public async Task<ChatRoom?> QueryChatRoomAsync(int id)
         {
@@ -24,5 +30,6 @@ namespace CommunicationWebApi.Services
             _ = dbContext.ChatRooms.Add(chatRoom);
             return await dbContext.SaveChangesAsync();
         }
+        
     }
 }

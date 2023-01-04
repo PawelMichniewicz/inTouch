@@ -10,13 +10,6 @@ namespace CommunicationWebApi.Services
         public UserService(CommunicationDbContext dbContext) : base(dbContext)
         { }
 
-        public async Task<ICollection<string>?> QueryChatRoomsByUserAsync(string name)
-        {
-            var user = await dbContext.Users.Include(u => u.ChatRooms).FirstOrDefaultAsync(u => u.Name == name);
-            ICollection<string>? result = user?.ChatRooms?.Select(c => c.Name).ToArray();
-            return result;
-        }
-
         public async Task<User?> QueryUserProfileAsync(string name)
         {
             var profile = await dbContext.Users.FirstOrDefaultAsync(u => u.Name == name);

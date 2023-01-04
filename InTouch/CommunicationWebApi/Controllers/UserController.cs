@@ -12,23 +12,9 @@ namespace CommunicationWebApi.Controllers
         public UserController(ILogger<UserController> logger, IUserService service) : base(logger, service)
         { }
 
-        // TODO: this should rather be in ChatRoomController
-        // TODO: BUG should operate on ID rather than name
-        [HttpGet("{name}")]
-        public async Task<ActionResult<ICollection<string>?>> GetUserChatRoomsAsync(string name)
-        {
-            logger.LogTrace($"{nameof(UserController.GetUserChatRoomsAsync)} : {nameof(name)} = {name}");
-            var chatRooms = await service.QueryChatRoomsByUserAsync(name);
-            if (chatRooms == null)
-            {
-                return NotFound();
-            }
-            return Ok(chatRooms);
-        }
-
         // GET: api/User/userName?userName=Ross%20Geller
         // TODO: BUG should operate on ID rather than name
-        [HttpGet("userName")]
+        [HttpGet("{userName}")]
         public async Task<ActionResult<User?>> GetUserProfileAsync(string userName)
         {
             logger.LogTrace($"{nameof(UserController.GetUserProfileAsync)} : {nameof(userName)} = {userName}");
