@@ -13,18 +13,20 @@ namespace CommunicationWebApi.Data
             }
 
             // seed Users
-            var joey = new User { Name = "Joey Tribbiani", Nickname = "JT" };
-            var rachel = new User { Name = "Rachel Green", Nickname = "RG" };
-            var chandler = new User { Name = "Chandler Bing", Nickname = "CB" };
-            var ross = new User { Name = "Ross Geller", Nickname = "RG" };
-            var monica = new User { Name = "Monica Geller", Nickname = "MG" };
-            var phoebe = new User { Name = "Phoebe Buffay", Nickname = "PB" };
+            var joey = new User { Name = "Joey Tribbiani", Nickname = "JT", EmailAddress = "JT@domain.com", Password = "letMeIn" };
+            var rachel = new User { Name = "Rachel Green", Nickname = "RG", EmailAddress = "RG@domain.com", Password = "letMeIn" };
+            var chandler = new User { Name = "Chandler Bing", Nickname = "CB", EmailAddress = "CB@domain.com", Password = "letMeIn" };
+            var ross = new User { Name = "Ross Geller", Nickname = "RG", EmailAddress = "RG@domain.com", Password = "letMeIn" };
+            var monica = new User { Name = "Monica Geller", Nickname = "MG", EmailAddress = "MB@domain.com", Password = "letMeIn" };
+            var phoebe = new User { Name = "Phoebe Buffay", Nickname = "PB", EmailAddress = "PB@domain.com", Password = "letMeIn" };
             context.Users.AddRange(joey, rachel, chandler, ross, monica, phoebe);
 
             // seed ChatRooms
-            var cr = new ChatRoom {
+            var cr = new ChatRoom
+            {
                 Name = "Friends",
-                Members = new List<User> { joey, rachel, chandler, ross, monica, phoebe } };
+                Members = new List<User> { joey, rachel, chandler, ross, monica, phoebe }
+            };
             context.ChatRooms.Add(cr);
 
             context.Messages.AddRange(
