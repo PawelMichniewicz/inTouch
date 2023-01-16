@@ -49,5 +49,12 @@ namespace CommunicationWebApi.Controllers
 
         }
 
+        [HttpPost()]
+        public async Task<ActionResult> SignUpAsync()
+        {
+            await service.CreateUserAsync();
+            return Ok();
+        }
+
     }
 }

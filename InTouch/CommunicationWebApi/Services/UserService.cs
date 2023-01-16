@@ -10,6 +10,14 @@ namespace CommunicationWebApi.Services
         public UserService(CommunicationDbContext dbContext) : base(dbContext)
         { }
 
+        public async Task CreateUserAsync()
+        {
+            var temp = new User();
+            var entity = await dbContext.Users.AddAsync(temp);
+            dbContext.SaveChanges();
+            throw new NotImplementedException();
+        }
+
         public async Task<User?> QueryUserProfileAsync(string name)
         {
             var profile = await dbContext.Users.FirstOrDefaultAsync(u => u.Name == name);
